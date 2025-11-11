@@ -3,11 +3,39 @@ const cheerio = require("cheerio");
 
 exports.codeChef = async (req, res) => {
   try {
-    const handler = req.params.handler;
+    const handler = req.params.handler?.trim();
+    if (!handler) {
+      return res.status(400).json({
+        success: "fail",
+        message: "Username (handler) is required",
+      });
+    }
+
     const codeChefUrl = `https://www.codechef.com/users/${handler}`;
-    const { data } = await axios.get(codeChefUrl);
+
+    let data;
+    try {
+      const response = await axios.get(codeChefUrl);
+      data = response.data;
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        return res.status(404).json({
+          success: "fail",
+          message: "User not found on CodeChef",
+        });
+      }
+      throw err; // let other network errors fall through to the main catch
+    }
 
     const $ = cheerio.load(data);
+
+    // If profile page exists but structure is missing (CodeChef layout change or invalid user)
+    if ($(".user-details-container").length === 0) {
+      return res.status(404).json({
+        success: "fail",
+        message: "User not found or invalid CodeChef profile page",
+      });
+    }
 
     function extractUserRatings($) {
       const result = {
@@ -23,10 +51,10 @@ exports.codeChef = async (req, res) => {
         totalProblemsSolved: 0,
       };
 
+      // Extract rating history
       $("script").each((index, element) => {
         if (element.type === "text") {
           const scriptText = $(element).text();
-
           const ratingMatch = scriptText.match(/var all_rating = (\[.*?\]);/);
           if (ratingMatch) {
             try {
@@ -38,19 +66,18 @@ exports.codeChef = async (req, res) => {
         }
       });
 
+      // Extract current rating
       const ratingText = $(".widget-rating .rating-number").text().trim();
       result.currentRating = parseInt(ratingText.replace("?", "")) || 0;
 
       // Extract highest rating
       const highestRatingText = $(".widget-rating small").text();
-      const highestRatingMatch =
-        highestRatingText.match(/Highest Rating (\d+)/);
+      const highestRatingMatch = highestRatingText.match(/Highest Rating (\d+)/);
       result.highestRating = highestRatingMatch
         ? parseInt(highestRatingMatch[1])
         : 0;
 
-      // FIXED: Extract division properly
-      // The division is in the div after rating number and before the star
+      // Extract division
       const ratingWidget = $(".widget-rating .rating-header");
       result.division =
         ratingWidget.find("div").eq(1).text().trim().replace(/[()]/g, "") || "";
@@ -61,11 +88,11 @@ exports.codeChef = async (req, res) => {
       result.countryRank =
         parseInt($(".rating-ranks a").eq(1).text().trim()) || 0;
 
-      // Extract contests participated
+      // Contests participated
       const contestsText = $(".contest-participated-count b").text().trim();
       result.contestsParticipated = parseInt(contestsText) || 0;
 
-      // Extract contest problems
+      // Contest problems
       $(".rating-data-section .content").each((index, element) => {
         const $entry = $(element);
         const title = $entry.find("h5 span").text().trim();
@@ -75,15 +102,11 @@ exports.codeChef = async (req, res) => {
           $entry.find("p span span").each((i, probEl) => {
             problems.push($(probEl).text().trim());
           });
-
-          result.contestProblems.push({
-            contest: title,
-            problems: problems,
-          });
+          result.contestProblems.push({ contest: title, problems });
         }
       });
 
-      // Extract total problems solved
+      // Total problems solved
       const problemsText = $(".problems-solved h3").last().text();
       const problemsMatch = problemsText.match(/Total Problems Solved: (\d+)/);
       result.totalProblemsSolved = problemsMatch
@@ -93,7 +116,6 @@ exports.codeChef = async (req, res) => {
       return result;
     }
 
-    // Extract the data
     const userData = extractUserRatings($);
 
     return res.status(200).json({
@@ -102,7 +124,7 @@ exports.codeChef = async (req, res) => {
       data: userData,
     });
   } catch (error) {
-    console.error("Error fetching CodeChef data:", error);
+    console.error("🔥🔥🔥Error fetching CodeChef data:", error.message);
     return res.status(500).json({
       success: "fail",
       message: "Internal Server Error",

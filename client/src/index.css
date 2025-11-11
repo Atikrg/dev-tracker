@@ -71,6 +71,8 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --grid-color: 220 13% 85%;
   }
 
   .dark {
@@ -119,5 +121,15 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+
+@layer utilities {
+  .bg-grid {
+    background-image: 
+      linear-gradient(to right, hsl(var(--grid-color) / 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--grid-color) / 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

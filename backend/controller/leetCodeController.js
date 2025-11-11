@@ -25,8 +25,8 @@ exports.leetCode = async (req, res) => {
       { headers: { "Content-Type": "application/json" } }
     );
 
-    const userContestRatings = data?.data.userContestRanking;
 
+    const userContestRatings = data?.data.userContestRanking;
 
     if (
       !userContestRatings ||
@@ -39,13 +39,15 @@ exports.leetCode = async (req, res) => {
       });
     }
 
-
     return res.status(200).json({
       success: "success",
       message: "Successfully fetched leetcode user profile",
       data,
     });
   } catch (error) {
+
+    console.error("🔥🔥🔥Error fetching leetCode data:", error.message);
+    
     return res.status(500).json({
       success: "fail",
       message: "Internal Server Error",
