@@ -128,8 +128,8 @@ All colors MUST be HSL.
 @layer utilities {
   .bg-grid {
     background-image: 
-      linear-gradient(to right, hsl(var(--grid-color) / 0.15) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--grid-color) / 0.15) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--grid-color) / 0.35) 1px, transparent 2px),
+      linear-gradient(to bottom, hsl(var(--grid-color) / 0.35) 1px, transparent 2px);
     background-size: 40px 40px;
   }
 }
