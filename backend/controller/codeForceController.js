@@ -38,9 +38,6 @@ exports.codeForces = async (req, res) => {
       data: result,
     });
   } catch (error) {
-    console.error("🔥 Error fetching Codeforces data:", error.message);
-
-    // ✅ Handle Axios HTTP errors
     if (error.response) {
       const status = error.response.status;
 
