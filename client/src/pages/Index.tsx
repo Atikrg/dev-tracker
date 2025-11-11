@@ -70,7 +70,7 @@ const Index = () => {
           <div className="inline-flex items-center gap-2 mb-4">
             <Trophy className="w-8 h-8 text-primary" />
             <h1 className="text-4xl font-bold text-foreground">
-              Competitive Programming Ratings
+              Competitive Programming Platforms  Ratings
             </h1>
           </div>
           <p className="text-muted-foreground text-lg">
