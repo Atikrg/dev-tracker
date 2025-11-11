@@ -13,20 +13,32 @@ exports.allCodePlatforms = async (req, res) => {
       });
     }
 
-    const [leet, codeforces, codechef] = await Promise.all([
+
+    const results = await Promise.allSettled([
       axios.get(`${URL}/api/leetcode/${handler}`),
       axios.get(`${URL}/api/codeforces/${handler}`),
       axios.get(`${URL}/api/codechef/${handler}`),
     ]);
 
+    const leet =
+      results[0].status === "fulfilled" ? results[0].value.data : null;
+    const codeforces =
+      results[1].status === "fulfilled" ? results[1].value.data : null;
+    const codechef =
+      results[2].status === "fulfilled" ? results[2].value.data : null;
+
     const data = {
-      leetcode: leet.data,
-      codeforces: codeforces.data,
-      codechef: codechef.data,
+      leetcode: leet?.data,
+      codeforces: codeforces?.data,
+      codechef: codechef?.data,
     };
 
-    res.json({ success: true, data });
+
+    return res.json({ success: true, data });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: "fail",
+      message: "Internal Server Error",
+    });
   }
 };
