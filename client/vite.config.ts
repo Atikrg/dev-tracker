@@ -8,14 +8,7 @@ export default defineConfig(({ mode }) => ({
   base: './',
   server: {
     host: "::",
-    port: 8080,
-    proxy: {
-      "/api": {
-        target: "https://dev-tracker-47c8.onrender.com", // your backend
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    port: 8080
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(
     Boolean
