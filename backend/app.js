@@ -1,7 +1,7 @@
 const express = require("express");
 const scheduleTasks = require("./utils/cron");
 const limiterUtils = require("./utils/rateLimiter");
-
+const cors = require("cors");
 const rateLimiter = limiterUtils.limiter;
 const app = express();
 
