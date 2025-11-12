@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
     "start": "cross-env TZ=Asia/Kolkata node server.js"
   },
   "dependencies": {
