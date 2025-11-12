@@ -7,8 +7,10 @@ app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", ()=>{
+app.get("/", async (req, res)=>{
     console.info("Server is running");
+    res.send("Server is listening")
+
 })
 
 app.listen(PORT, () => {
