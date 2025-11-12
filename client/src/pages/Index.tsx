@@ -47,6 +47,9 @@ const Index = () => {
     try {
       const res = await axios.get(`/api/fetch-all-ratings/${username}`);
 
+
+      console.log("response is🔥🔥🔥", res);
+
       setRatings(res.data.data);
     } catch (err: any) {
       if (err.response && err.response.status === 429) {
