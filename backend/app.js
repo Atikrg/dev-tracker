@@ -5,6 +5,15 @@ const limiterUtils = require("./utils/rateLimiter");
 const rateLimiter = limiterUtils.limiter;
 const app = express();
 
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, // will set in Render dashboard
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(rateLimiter);
 
 scheduleTasks();
