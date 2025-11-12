@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const FRONTEND_URL = process.env.FRONTEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL;
 
 exports.allCodePlatforms = async (req, res) => {
   try {
@@ -15,9 +15,9 @@ exports.allCodePlatforms = async (req, res) => {
 
 
     const results = await Promise.allSettled([
-      axios.get(`${FRONTEND_URL}/api/leetcode/${handler}`),
-      axios.get(`${FRONTEND_URL}/api/codeforces/${handler}`),
-      axios.get(`${FRONTEND_URL}/api/codechef/${handler}`),
+      axios.get(`${BACKEND_URL}/api/leetcode/${handler}`),
+      axios.get(`${BACKEND_URL}/api/codeforces/${handler}`),
+      axios.get(`${BACKEND_URL}/api/codechef/${handler}`),
     ]);
 
     const leet =
