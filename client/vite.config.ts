@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     proxy: {
       "/api": {
-        target: "http://localhost:3000", // your backend
+        target: "https://dev-tracker-47c8.onrender.com", // your backend
         changeOrigin: true,
         secure: false,
       },
