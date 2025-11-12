@@ -45,7 +45,7 @@ const Index = () => {
     setRatings(null);
 
     try {
-      const res = await axios.get(`/api/fetch-all-ratings/${username}`);
+      const res = await axios.get(`https://dev-tracker-47c8.onrender.com/api/fetch-all-ratings/${username}`);
 
 
       console.log("response is🔥🔥🔥", res);
