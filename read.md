@@ -20,7 +20,6 @@ A full-stack app that tracks and displays your competitive programming ratings f
 ## ⚙️ Features
 
 ✅ Fetch and display user ratings from multiple platforms  
-✅ Cron jobs to update data automatically at specific times (7AM, 9AM, 1PM, 7PM IST)  
 ✅ Rate limiter — allows only 3 requests per minute per user  
 ✅ RESTful API structure  
 ✅ Frontend built with Vite for fast reloads  
