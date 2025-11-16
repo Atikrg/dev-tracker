@@ -9,7 +9,7 @@ Dev Tracker is a full-stack app that shows competitive programming ratings from 
 ### 🔹 Frontend
 - Port: `8080`
 - React + Vite + TypeScript
-- TailwindCSS + shadcn-ui
+- TailwindCSS
 
 ### 🔹 Backend
 - Port: `3000`
@@ -23,7 +23,7 @@ Dev Tracker is a full-stack app that shows competitive programming ratings from 
 
 ## ⚙️ Features
 - Fetches ratings from LeetCode, Codeforces, and CodeChef
-- Rate limiter: **3 requests/min per user**
+- Rate limiter: **13 requests/min per user**
 - RESTful API architecture
 - Fast Vite-powered frontend
 - Clean UI with Tailwind + shadcn
