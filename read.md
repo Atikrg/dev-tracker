@@ -1,28 +1,38 @@
 # 🧠 Dev Tracker
 
-A full-stack app that tracks and displays your competitive programming ratings from **LeetCode**, **Codeforces**, and **CodeChef** — updated in real time using Node.js, Express, and React (Vite).
+Dev Tracker is a full-stack app that shows competitive programming ratings from **LeetCode**, **Codeforces**, and **CodeChef** — updated in real time using a Node.js backend and a React (Vite) frontend.
 
 ---
 
 ## 🚀 Tech Stack
 
 ### 🔹 Frontend
-- **Port:** `8080`
-- **Framework:** Vite + React + TypeScript + Tailwind + shadcn-ui
+- Port: `8080`
+- React + Vite + TypeScript
+- TailwindCSS + shadcn-ui
 
 ### 🔹 Backend
-- **Port:** `3000`
-- **Framework:** Express.js (Node.js)
+- Port: `3000`
+- Node.js + Express.js
 
+**Live Links**
+- **Frontend:** https://codeplatforms.netlify.app/
+- **Backend:** https://dev-tracker-47c8.onrender.com
 
 ---
 
 ## ⚙️ Features
-
-✅ Fetch and display user ratings from multiple platforms  
-✅ Rate limiter — allows only 3 requests per minute per user  
-✅ RESTful API structure  
-✅ Frontend built with Vite for fast reloads  
+- Fetches ratings from LeetCode, Codeforces, and CodeChef
+- Rate limiter: **3 requests/min per user**
+- RESTful API architecture
+- Fast Vite-powered frontend
+- Clean UI with Tailwind + shadcn
 
 ---
 
+## 📦 Installation
+
+### 1️⃣ Clone the repo
+```bash
+git clone https://github.com/your-username/dev-tracker.git
+cd dev-tracker
