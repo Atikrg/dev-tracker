@@ -1,10 +1,6 @@
 require("dotenv").config();
 const app = require("./app");
 
-const morgan = require("morgan");
-
-app.use(morgan("dev"));
-
 const PORT = process.env.PORT || 3000;
 
 app.get("/", async (req, res)=>{
