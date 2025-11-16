@@ -5,29 +5,7 @@ import { PlatformCard } from "@/components/PlatformCard";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle, Trophy } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-
-interface RatingsData {
-  leetcode: {
-    data: {
-      userContestRanking?: {
-        rating?: number;
-        globalRanking?: number;
-        topPercentage?: number;
-      };
-    };
-  };
-  codeforces: {
-    currentRating: number;
-    rank: string;
-    contribution: number;
-  };
-  codechef: {
-    currentRating: number;
-    highestRating: number;
-    division: string;
-    globalRank: number;
-  };
-}
+import { RatingsData } from "@/types";
 
 const Index = () => {
   const [ratings, setRatings] = useState<RatingsData | null>(null);
@@ -45,10 +23,10 @@ const Index = () => {
     setRatings(null);
 
     try {
-      const res = await axios.get(`https://dev-tracker-47c8.onrender.com/api/fetch-all-ratings/${username}`);
+      const res = await axios.get(
+        `https://dev-tracker-47c8.onrender.com/api/fetch-all-ratings/${username}`
+      );
 
-
-      console.log("response is🔥🔥🔥", res);
 
       setRatings(res.data.data);
     } catch (err: any) {
