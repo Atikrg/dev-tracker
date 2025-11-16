@@ -10,7 +10,7 @@ console.log("frontend url in backend", process.env.FRONTEND_URL);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
