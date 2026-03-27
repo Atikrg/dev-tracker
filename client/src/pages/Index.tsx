@@ -8,6 +8,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { RatingsData } from "@/types";
 
 const Index = () => {
+
+
   const [ratings, setRatings] = useState<RatingsData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,9 +25,12 @@ const Index = () => {
     setRatings(null);
 
     try {
+
+      const API = import.meta.env.VITE_BACKEND_URL
       const res = await axios.get(
-        `https://dev-tracker-47c8.onrender.com/api/fetch-all-ratings/${username}`
+        `${API}/api/fetch-all-ratings/${username}`
       );
+
 
 
       setRatings(res.data.data);
@@ -105,7 +110,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {ratings?.leetcode &&
               Object.keys(ratings.leetcode?.data?.userContestRanking).length >
-                0 && (
+              0 && (
                 <PlatformCard
                   platform="leetcode"
                   title="LeetCode"

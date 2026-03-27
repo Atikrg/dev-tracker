@@ -17,6 +17,9 @@ app.use(
 
 app.use(rateLimiter);
 
+// app.use(cors({
+//   origin: "*"
+// }));
 scheduleTasks();
 
 const codeChefRouter = require("./router/codeChefRouter");
