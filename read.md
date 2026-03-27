@@ -1,10 +1,14 @@
-# 🧠 Dev Tracker
+# Video
+
+https://github.com/user-attachments/assets/04233ac1-d9ac-44f0-b760-a17910ea2fed
+
+#  Dev Tracker
 
 Dev Tracker is a full-stack app that shows competitive programming ratings from **LeetCode**, **Codeforces**, and **CodeChef** — updated in real time using a Node.js backend and a React (Vite) frontend.
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 ### 🔹 Frontend
 - Port: `8080`
@@ -21,7 +25,7 @@ Dev Tracker is a full-stack app that shows competitive programming ratings from 
 
 ---
 
-## ⚙️ Features
+##  Features
 - Fetches ratings from LeetCode, Codeforces, and CodeChef
 - Rate limiter: **13 requests/min per user**
 - RESTful API architecture
@@ -30,9 +34,9 @@ Dev Tracker is a full-stack app that shows competitive programming ratings from 
 
 ---
 
-## 📦 Installation
+##  Installation
 
-### 1️⃣ Clone the repo
+###  Clone the repo
 ```bash
 git clone https://github.com/your-username/dev-tracker.git
 cd dev-tracker
