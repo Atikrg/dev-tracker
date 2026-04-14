@@ -4,11 +4,12 @@ const limiterUtils = require("./utils/rateLimiter");
 const cors = require("cors");
 const rateLimiter = limiterUtils.limiter;
 const app = express();
+require("dotenv").config();
 
 
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST"],
     credentials: true,
   })
