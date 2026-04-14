@@ -9,6 +9,6 @@ app.get("/", async (req, res)=>{
 
 })
 
-app.listen(PORT,"0.0.0.0" ,() => {
+app.listen(PORT ,() => {
   console.info("Server listening at port " + PORT);
 });

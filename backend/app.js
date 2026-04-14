@@ -5,11 +5,10 @@ const cors = require("cors");
 const rateLimiter = limiterUtils.limiter;
 const app = express();
 
-console.log("frontend url in backend", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   })

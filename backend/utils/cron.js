@@ -2,7 +2,7 @@
 const cron = require("node-cron");
 
 const scheduleTasks = () => {
-  console.log("Cron Scheduler Started");
+  // console.log("Cron Scheduler Started");
   cron.schedule(
     "0 7,9,13,19 * * *",
     () => {
